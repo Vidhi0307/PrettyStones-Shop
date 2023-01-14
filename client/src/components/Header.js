@@ -35,7 +35,7 @@ const Header = () => {
             <Nav.Link className="fas" href="">About Us</Nav.Link>
           </Nav>
           <Nav>
-          <Nav.Link className="fas fa-user p-3 me-3" href="">Login</Nav.Link>
+          <Nav.Link className="fas fa-user p-3 me-3" href="/login">Login</Nav.Link>
           <Nav.Link className="fas  p-3 me-1" href="/cart"><ShoppingCartSimple size ='32'/><Badge>{cart.length}</Badge></Nav.Link>
            
           </Nav>

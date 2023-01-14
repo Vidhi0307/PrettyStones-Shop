@@ -22,3 +22,9 @@
   justify-content: center;
   align-items: center;
 }
+
+.paperStyle {
+  padding:20;
+  height:'70vh';
+  width:380;
+   margin:"20px auto"}

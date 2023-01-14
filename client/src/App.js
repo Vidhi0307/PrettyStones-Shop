@@ -1,40 +1,32 @@
 import { Container } from "react-bootstrap";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-
-
 //pages and Components
-import Home from './pages/HomePage'
-import  Header  from './components/Header';
-import  Footer  from './components/Footer';
-import  Cart  from './components/Cart';
-
-
-
-
+import Home from "./pages/HomePage";
+import Header from "./components/Header";
+import Login from "./pages/Login"
+import Footer from "./components/Footer";
+import Cart from "./components/Cart";
 
 function App() {
   return (
-  
-      <div className="App">
-        <BrowserRouter>
+    <div className="App">
+      <BrowserRouter>
         <Header />
         <div className="Pages">
           <Routes>
-            <Route path= "/" element ={<Home/>}/>
-            <Route path ="/cart" element ={<Cart/>}/>
+            <Route path="/" element={<Home />} />
+            <Route path="/cart" element={<Cart />} />
+            <Route path="/login" element={<Login />} />
           </Routes>
-      
-        <main className="p-3">
-          <Container>
-           
-          </Container>
-        </main>
-        <Footer />
+
+          <main className="p-3">
+            <Container></Container>
+          </main>
+          <Footer />
         </div>
-        </BrowserRouter>
-      </div>
-  
+      </BrowserRouter>
+    </div>
   );
 }
 
