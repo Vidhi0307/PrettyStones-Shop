@@ -26,13 +26,17 @@ input LoginInput {
     email:String
     password:String
 }
+type Auth {
+    token: ID!
+    user: User
+  }
 
 type Query {
-    user:[User]
+    user: [User]
 }
 
 type Mutation{
-    registerUser(registerUser:RegisterInput ):User
+    registerUser(registerInput:RegisterInput ):User
     loginUser(loginInput:LoginInput ):User
 }
 `;

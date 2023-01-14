@@ -1,11 +1,13 @@
 const { gql, AuthenticationError } = require("apollo-server-express");
-const { User } = require('../models/User');
+const  User  = require('../models/User');
 const bcrypt = require("bcrypt");
 const { signToken } = require("../utils/auth");
 
+
+
 const resolvers  = {
   Mutation: {
-    async registerUser(_, { registertInput: { username, email, password } }) {
+     async registerUser(_, { registerInput: { username, email, password } }) {
         //See if an old use exists with same username
         const existingUser = await User.findOne({ email });
   
@@ -41,7 +43,8 @@ const resolvers  = {
           id: res.id,
           ...res._doc,
         };
-      },
+      } 
+ ,
     
     async loginUser(_, { loginInput: {email,password} }) {
 
@@ -72,7 +75,7 @@ const resolvers  = {
  },
 
   Query: {
-    user:() => User.findAll(),
+    user : () => User.find(),
   },
 };
 
