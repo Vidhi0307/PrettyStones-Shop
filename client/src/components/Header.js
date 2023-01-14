@@ -1,4 +1,4 @@
-import { ShoppingCartSimple } from "phosphor-react";
+import { ShoppingCartSimple ,User} from "phosphor-react";
 import React from "react";
 import { Badge,Navbar, Nav, Container,NavDropdown } from "react-bootstrap";
 
@@ -12,15 +12,15 @@ const Header = () => {
 
         
 
-<Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+<Navbar className="navbar" collapseOnSelect  bg="light" >
       <Container>
-        <Navbar.Brand href="/" className ="fw-bold">Pretty Stones</Navbar.Brand>
-        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+        <Navbar.Brand   href="/" style ={ {fontSize: 40}}>Pretty Stones</Navbar.Brand>
+        <Navbar.Toggle aria-controls="responsive-navbar-nav " />
         <Navbar.Collapse id="responsive-navbar-nav">
-          <Nav className="me-auto">
+          <Nav className="me-auto  ">
             
             
-            <NavDropdown className="fas" title="Categories" id="collasible-nav-dropdown">
+            <NavDropdown className="fs-3 " title="Categories" id="collasible-nav-dropdown">
               <NavDropdown.Item className="fas p-1" href="#action/3.1">Rings</NavDropdown.Item>
               <NavDropdown.Item className="fas p-1" href="#action/3.2">
                 Earrings
@@ -32,11 +32,12 @@ const Header = () => {
                 Browse All
               </NavDropdown.Item>
             </NavDropdown>
-            <Nav.Link className="fas" href="">About Us</Nav.Link>
+            <Nav.Link className="fs-3" href="/about">About Us</Nav.Link>
           </Nav>
           <Nav>
-          <Nav.Link className="fas fa-user p-3 me-3" href="/login">Login</Nav.Link>
-          <Nav.Link className="fas  p-3 me-1" href="/cart"><ShoppingCartSimple size ='32'/><Badge>{cart.length}</Badge></Nav.Link>
+           
+          <Nav.Link className="fs-3 me-4" href="/login"><User size={32} />Login</Nav.Link>
+          <Nav.Link  href="/cart"><ShoppingCartSimple size ='45'/><Badge>{cart.length}</Badge></Nav.Link>
            
           </Nav>
         </Navbar.Collapse>

@@ -9,7 +9,7 @@ type User {
     username:String
     email:String
     password:String
-    token:String
+    orders: [Order]
 
 }
 
@@ -37,7 +37,7 @@ type Query {
 
 type Mutation{
     registerUser(registerInput:RegisterInput ):User
-    loginUser(loginInput:LoginInput ):User
+    login(email: String!, password: String!): Auth
 }
 `;
 

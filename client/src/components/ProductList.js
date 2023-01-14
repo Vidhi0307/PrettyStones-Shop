@@ -32,7 +32,7 @@ const ProductList = (props) => {
   return (
 
     <div className="product">
-    <Card style={{ width: '25rem' }}>
+    <Card style={{ width: '25rem', height:'auto'}}>
     <Card.Img variant="top" src={itemImage} />
     <Card.Body>
       <Card.Title>Card Title</Card.Title>

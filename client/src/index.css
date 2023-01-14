@@ -1,25 +1,41 @@
+@import url('https://fonts.googleapis.com/css2?family=Allura&display=swap');
+
+
 * {
   margin :0;
   padding:0;
+  font-family: 'Allura', cursive;
+ 
+  
 }
+
+.App{
+  background-color:honeydew  ;
+  font-family: 'Allura', cursive;
+  background-image: url('./images/bg.jpg');
+  background-size: cover;
+  
+
+  
+}
+
 
 .products {
   width: 100%;
   height: auto;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+   grid-template-columns: 1fr 1fr 1fr;
   place-items: center;
 }
 
 .product {
-  border-radius: 15px;
-  width: 300px;
-  height: 350px;
-  margin: 100px;
- 
+  border-radius: 18px;
+  width: 20vh;
+  height: 70vh;
+  margin:2rem;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
 }
 
@@ -28,3 +44,5 @@
   height:'70vh';
   width:380;
    margin:"20px auto"}
+
+   
