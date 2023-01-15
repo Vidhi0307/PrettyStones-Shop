@@ -23,17 +23,16 @@
 
 
 .products {
-  width: 78%;
-  padding: 20px;
+
   display: flex;
   flex-wrap:wrap;
- justify-content: space-around;
+ justify-content: space-between;
 }
 
 .product {
   border-radius: 18px;
-  width: 20vh;
-  height: 70vh;
+  padding:2px;
+  margin:3px;
   margin:2rem;
   display: flex;
   flex-direction: column;

@@ -19,6 +19,7 @@ import Header from "./components/Header";
 import Login from "./pages/Login"
 import Footer from "./components/Footer";
 import Cart from "./components/Cart";
+import { LOGIN } from "./utils/mutations";
 
 
 
@@ -51,7 +52,7 @@ function App() {
       <Header />
           <Routes>
            <Route path="/" element={<Home />} />
-            <Route path="/login" element={<Cart />} />
+            <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
             
           </Routes>

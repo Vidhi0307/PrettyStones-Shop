@@ -3,41 +3,62 @@ import React from "react";
 import Auth from "../utils/auth";
 import { Link, useLocation } from "react-router-dom";
 import { Dropdown } from "react-bootstrap";
-import {  Badge,Button,  Navbar,  Nav,  Container,  NavDropdown,  NavItem}  from "react-bootstrap";
+import {
+  Badge,
+  Button,
+  Navbar,
+  Nav,
+  Container,
+  NavDropdown,
+  NavItem,
+} from "react-bootstrap";
 
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from "react-redux";
 import Cart from "./Cart";
 
-
-
 const Header = () => {
- 
+
+
   const dispatch = useDispatch();
-  const state = useSelector(state => state);
-  const {cart}=state;
-  const totalItems= state.cart.length;
+  const state = useSelector((state) => state);
+
+
+  const { cart } = state;
+  
+function TotalItems() {
+  var totalItems = 0;
+  state.cart.forEach((item) => {
+    for (let i = 0; i < state.cart.length; i++) {
+
+      totalItems= item.purchaseQuantity + totalItems;
+    }
+    });
+    return totalItems;
+  }
+
+
+
+
   function showNavigation() {
     if (Auth.loggedIn()) {
       return (
-        <ul className="flex-row">
-          <Nav.Link className="mx-1"href="/orderHistory">
-              Order History
-              </Nav.Link>
+        <>
+          <Nav.Link className="mx-1" href="/orderHistory">
+            Order History
+          </Nav.Link>
           <NavItem className="mx-1" onClick={() => Auth.logout()}>
-              Logout
+            Logout
           </NavItem>
-        </ul>
-
+        </>
       );
     } else {
       return (
         <Nav.Link className="m-1" href="/login">
-        <User size={32} />        
+          <User size={32} />
         </Nav.Link>
       );
     }
   }
-
 
   return (
     <Navbar collapseOnSelect expand="lg" bg="light" variant="light">
@@ -52,7 +73,7 @@ const Header = () => {
             <Nav.Link href="/about">About us</Nav.Link>
           </Nav>
           <Nav>
-           
+            <nav>{showNavigation()}</nav>
             <Nav.Link className="m-1" href="">
               <Heart size={32} />
             </Nav.Link>
@@ -62,19 +83,11 @@ const Header = () => {
               <Dropdown alignRight>
                 <Dropdown.Toggle variant="success">
                   <ShoppingCartSimple size={32} />
-                  <Badge>{totalItems}</Badge>
+                  <Badge>{TotalItems()}</Badge>
                 </Dropdown.Toggle>
 
-                <Dropdown.Menu style={{ minWidth: 370 }}>
-                
-                    <Cart/>
-                 {/*    <Link to="/cart">
-                    <Button style={{ width: "95%", margin: "0 10px" }}>
-                      Go To Cart
-                    </Button>
-                  </Link> */}
-                    
-               
+                <Dropdown.Menu style={{ minWidth: 390 }}>
+                  <Cart />
                 </Dropdown.Menu>
               </Dropdown>
             </Nav>

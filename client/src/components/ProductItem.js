@@ -47,19 +47,20 @@ function ProductItem(item) {
 
   return (
 
-    <div className="product">
+    <div className="product ">
        
-    <Card style={{ width: '25rem', height:'auto'}}>
-      <Card.Img variant="top" src={itemImage} />
-    <Card.Body>
-      <Card.Title>Card Title</Card.Title>
-      <Card.Text>
-     <p className="fas fw-bold"> {itemDesc}</p>
-      <p> ${price}</p>
-      </Card.Text>
-      <Button variant="primary" onClick={addToCart}>Add to Cart</Button>
-    </Card.Body>
-  </Card>
+  
+
+  <Card className =" border border-secondary rounded-2"style={{ width: '18rem' }}>
+      <Card.Img variant="top" src= {itemImage}/>
+      <Card.Body>
+        <Card.Title><p className="fas fw-bold"> {itemDesc}</p></Card.Title>
+        <Card.Text>
+        <p> ${price}</p>
+        </Card.Text>
+        <Button variant="primary" onClick={addToCart}>Add to Cart</Button>
+      </Card.Body>
+    </Card>
   </div>
    
     
