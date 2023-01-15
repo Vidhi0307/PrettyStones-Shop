@@ -4,28 +4,30 @@
 * {
   margin :0;
   padding:0;
-  font-family: 'Allura', cursive;
- 
   
 }
 
 .App{
   background-color:honeydew  ;
-  font-family: 'Allura', cursive;
-  background-image: url('./images/bg.jpg');
-  background-size: cover;
-  
 
-  
+}
+.home{
+  display: flex;
+}
+.header{
+  display: flex;
+  flex-direction: row;
+  place-items: center;
+
 }
 
 
 .products {
-  width: 100%;
-  height: auto;
-  display: grid;
-   grid-template-columns: 1fr 1fr 1fr;
-  place-items: center;
+  width: 78%;
+  padding: 20px;
+  display: flex;
+  flex-wrap:wrap;
+ justify-content: space-around;
 }
 
 .product {
@@ -39,10 +41,91 @@
   align-items: center;
 }
 
+.container {
+  width: 85%;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
 .paperStyle {
   padding:20;
   height:'70vh';
   width:380;
    margin:"20px auto"}
 
-   
+   .cart {
+    position: auto;
+    top: 0;
+    right: 0;
+    
+    background-color: var(--light);
+    overflow: auto;
+    padding: .5rem;
+    box-shadow: 0 0 1rem rgba(0, 0, 0, .5);
+    border-bottom-left-radius: .5rem;
+  }
+  
+  .cart h2 {
+    font-size: 1.5rem;
+    border-bottom: 1px solid var(--dark);
+    padding-bottom: .5rem;
+    margin: 1rem 0;
+  }
+  
+  .cart .close {
+    position: absolute;
+    top: .5rem;
+    right: .5rem;
+    cursor: pointer;
+    color: var(--tertiary);
+  }
+  
+  .cart .close:hover {
+    text-decoration: underline;
+  }
+  
+  .cart-closed {
+    position: auto;
+    top: 2%;
+    right: 1%;
+    font-size: 2rem;
+    cursor: pointer;
+    background-color: var(--secondary);
+    border-radius: 50%;
+    padding: .25rem;
+    width: 100px;
+    height: 100px;
+  }
+  /* 
+  Styling for Cart  */
+  .cart-closed:hover {
+    transform: rotate(8deg);
+  }
+  
+  .cart img {
+    width: 70px;
+    margin-right: 1rem;
+  }
+  
+  .cart input {
+    width: 50px;
+    padding: 0;
+    margin: 0 .5rem 1rem 0;
+  }
+  
+  @media screen and (max-width: 768px) {
+    .cart {
+      position: relative;
+      max-width: 100%;
+      max-height: auto;
+      box-shadow: none;
+      background-color: inherit;
+    }
+  
+    .cart-closed {
+      position: relative;
+      margin: 0 auto;
+    }
+  }

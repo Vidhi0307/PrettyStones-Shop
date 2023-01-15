@@ -1,28 +1,14 @@
-import React , {useState, useEffect}  from 'react'
+import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
-import {Grid,Paper,Avatar, TextField, FormControlLabel,Typography,Checkbox} from '@mui/material'
-import LockPersonIcon from '@mui/icons-material/LockPerson';
-import {Link} from 'react-router-dom'
-import{Form,Row,Col,Button} from 'react-bootstrap'
+import { Link } from 'react-router-dom';
 import { LOGIN } from '../utils/mutations';
 import Auth from '../utils/auth';
 
-//import {useDispatch,useSelector} from 'react-redux'
+function Login(props) {
+  const [formState, setFormState] = useState({ email: '', password: '' });
+  const [login, { error }] = useMutation(LOGIN);
 
-
-
-const Login = (props) => {
-
-
-const paperStyle={padding:20,height:'70vh',width:380, margin:"20px auto"}
-const avatarStyle={backgroundColor:'#1bbd7e'}
-const btnstyle={margin:'8px'}
-
-const [formState, setFormState] = useState({ email: '', password: '' });
-const [login, { error }] = useMutation(LOGIN);
-
-
-const handleFormSubmit = async (event) => {
+  const handleFormSubmit = async (event) => {
     event.preventDefault();
     try {
       const mutationResponse = await login({
@@ -34,53 +20,52 @@ const handleFormSubmit = async (event) => {
       console.log(e);
     }
   };
-  
-const handleChange = (event) => {
+
+  const handleChange = (event) => {
     const { name, value } = event.target;
-   /*  setFormState({
+    setFormState({
       ...formState,
       [name]: value,
-    }); */
+    });
   };
 
   return (
-    <Grid>
-        
-      <Paper elevation ={10} style={paperStyle}>
-      <Grid align="center" className='py-4'>
-      <Avatar style={avatarStyle}><LockPersonIcon/></Avatar>
-        Sign in 
-        </Grid>
-        <form onSubmit={handleFormSubmit}>
-        <TextField id="filled-basic" className='mr-3 py-2' label="Username" variant="filled"  placeholder='Email Address' fullWidth required  onChange={handleChange}/>
-        <TextField id="filled-basic" type='password' className='mr-3' label="Password" variant="filled"  placeholder='*******' fullWidth required/>
-        <FormControlLabel
-                    control={
-                    <Checkbox
-                        name="checkedB"
-                        color="primary"
-                    />
-                    }
-                    label="Remember me"
-                 />
-                <Button as="input"variant='primary' type="submit" value="Sign in" className='m-4'/>
-                <Typography >
-                     <Link href="#" >
-                        Forgot password ?
-                </Link>
-                </Typography>
-                <Typography > Do you have an account ?
-                     <Link to='/signup' >
-                        Sign Up 
-                </Link>
-                </Typography>
+    <div className="container my-1">
+      <Link to="/signup">← Go to Signup</Link>
 
-                </form>
-      </Paper>
-    </Grid>
-
-
-  )
+      <h2>Login</h2>
+      <form onSubmit={handleFormSubmit}>
+        <div className="flex-row space-between my-2">
+          <label htmlFor="email">Email address:</label>
+          <input
+            placeholder="youremail@test.com"
+            name="email"
+            type="email"
+            id="email"
+            onChange={handleChange}
+          />
+        </div>
+        <div className="flex-row space-between my-2">
+          <label htmlFor="pwd">Password:</label>
+          <input
+            placeholder="******"
+            name="password"
+            type="password"
+            id="pwd"
+            onChange={handleChange}
+          />
+        </div>
+        {error ? (
+          <div>
+            <p className="error-text">The provided credentials are incorrect</p>
+          </div>
+        ) : null}
+        <div className="flex-row flex-end">
+          <button type="submit">Submit</button>
+        </div>
+      </form>
+    </div>
+  );
 }
 
-export default Login
+export default Login;

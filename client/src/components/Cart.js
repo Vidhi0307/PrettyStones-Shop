@@ -1,13 +1,16 @@
-/* import React, { useEffect } from 'react';
+import React, { useEffect } from 'react';
+import { ShoppingCartSimple } from "phosphor-react";
 import { loadStripe } from '@stripe/stripe-js';
 import { useLazyQuery } from '@apollo/client';
-import { QUERY_CHECKOUT } from '../../utils/queries';
-import { idbPromise } from '../../utils/helpers';
-import CartItem from '../CartItem';
-import Auth from '../../utils/auth';
-// import { useStoreContext } from '../../utils/GlobalState';
-import { TOGGLE_CART, ADD_MULTIPLE_TO_CART } from '../../utils/actions';
+import { QUERY_CHECKOUT } from '../utils/queries';
+import { idbPromise } from '../utils/helpers';
+import CartItem from './CartItem';
+import Auth from "../utils/auth";
 import './style.css';
+
+//import Auth from '../utils/auth';
+// import { useStoreContext } from '../../utils/GlobalState';
+import { ADD_MULTIPLE_TO_CART } from '../utils/actions';
 
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -17,6 +20,7 @@ const Cart = () => {
   // const [state, dispatch] = useStoreContext();
   const dispatch = useDispatch();
   const state = useSelector(state => state);
+  
   const [getCheckout, { data }] = useLazyQuery(QUERY_CHECKOUT);
 
   useEffect(() => {
@@ -38,9 +42,7 @@ const Cart = () => {
     }
   }, [state.cart.length, dispatch]);
 
-  function toggleCart() {
-    dispatch({ type: TOGGLE_CART });
-  }
+
 
   function calculateTotal() {
     let sum = 0;
@@ -64,22 +66,11 @@ const Cart = () => {
     });
   }
 
-  if (!state.cartOpen) {
-    return (
-      <div className="cart-closed" onClick={toggleCart}>
-        <span role="img" aria-label="trash">
-          🛒
-        </span>
-      </div>
-    );
-  }
-
+ 
   return (
     <div className="cart">
-      <div className="close" onClick={toggleCart}>
-        [close]
-      </div>
-      <h2>Shopping Cart</h2>
+     
+    
       {state.cart.length ? (
         <div>
           {state.cart.map((item) => (
@@ -89,11 +80,11 @@ const Cart = () => {
           <div className="flex-row space-between">
             <strong>Total: ${calculateTotal()}</strong>
 
-            {Auth.loggedIn() ? (
+            { Auth.loggedIn() ? (
               <button onClick={submitCheckout}>Checkout</button>
             ) : (
               <span>(log in to check out)</span>
-            )}
+            )} 
           </div>
         </div>
       ) : (
@@ -108,4 +99,4 @@ const Cart = () => {
   );
 };
 
-export default Cart; */
+export default Cart;

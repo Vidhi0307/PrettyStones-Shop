@@ -5,9 +5,10 @@ import Np2 from "./images/Np2.jpg";
 
 
 export const ITEMS = [
-  { id: 1, itemName: "Stud", price: "15", itemImage: ER1 },
-  { id: 2, itemName: "Stud", price: "12", itemImage: ER2 },
-  { id: 3, itemName: "Stud", price: "13", itemImage: ER3 },
-  { id: 4, itemName: "Stud", price: "1", itemImage: Np2 },
-  { id: 5, itemName: "Stud", price: "11", itemImage: Np2 }
+  { _id: 1, itemDesc: "Stud", price: "15", itemImage: ER1 },
+  { _id: 2, itemDesc: "Stud", price: "12", itemImage: ER2 },
+  { _id: 3, itemDesc: "Stud", price: "13", itemImage: ER3 },
+  { _id: 4, itemDesc: "Stud", price: "1", itemImage: Np2 },
+  { _id: 5, itemDesc: "Stud", price: "11", itemImage: Np2 }
 ];
+

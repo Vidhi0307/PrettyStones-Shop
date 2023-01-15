@@ -7,6 +7,9 @@ import {
   createHttpLink,
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
+import { Provider } from 'react-redux';
+
+import store from './utils/store'
 
 
 //pages and Components
@@ -16,6 +19,7 @@ import Header from "./components/Header";
 import Login from "./pages/Login"
 import Footer from "./components/Footer";
 import Cart from "./components/Cart";
+
 
 
 const httpLink = createHttpLink({
@@ -43,21 +47,17 @@ function App() {
     
     <div className="App">
       <BrowserRouter>
-        <Header />
-        <div className="Pages">
+      <Provider store={store}>
+      <Header />
           <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/cart" element={<Cart />} />
-            <Route path="/login" element={<Login />} />
+           <Route path="/" element={<Home />} />
+            <Route path="/login" element={<Cart />} />
             <Route path="/signup" element={<Signup />} />
             
           </Routes>
-
-          <main className="p-3">
-            <Container></Container>
-          </main>
           <Footer />
-        </div>
+         
+         </Provider>
       </BrowserRouter>
     </div>
     </ApolloProvider>

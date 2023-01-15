@@ -1,20 +1,12 @@
-import { ITEMS } from "../Product";
+import React from "react";
+import { Container } from "react-bootstrap";
 import ProductList from "../components/ProductList";
+//import CategoryMenu from "../components/CategoryMenu";
 
 const Home = () => {
   return (
-    <div className="home">
-      <div className="products">
-        {ITEMS.map((item) => (
-          <ProductList
-            key={item.id}
-            id={item.id}
-            itemName={item.itemName}
-            price={item.price}
-            itemImage={item.itemImage}
-          />
-        ))}
-      </div>
+    <div className="container">
+      <ProductList />
     </div>
   );
 };
