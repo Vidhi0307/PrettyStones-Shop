@@ -1,7 +1,7 @@
 import React from "react";
 import { Container } from "react-bootstrap";
+import CategoryMenu from "../components/Categories";
 import ProductList from "../components/ProductList";
-//import CategoryMenu from "../components/CategoryMenu";
 
 const Home = () => {
   return (

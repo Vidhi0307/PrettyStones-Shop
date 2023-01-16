@@ -1,8 +1,9 @@
-import { Heart, User, ShoppingCartSimple } from "phosphor-react";
+import { Heart, User, ShoppingCartSimple, Image } from "phosphor-react";
 import React from "react";
 import Auth from "../utils/auth";
 import { Link, useLocation } from "react-router-dom";
 import { Dropdown } from "react-bootstrap";
+import CategoryMenu  from "./Categories";
 import {
   Badge,
   Button,
@@ -15,41 +16,42 @@ import {
 
 import { useDispatch, useSelector } from "react-redux";
 import Cart from "./Cart";
+import DropdownItem from "react-bootstrap/esm/DropdownItem";
 
 const Header = () => {
-
-
   const dispatch = useDispatch();
   const state = useSelector((state) => state);
 
-
   const { cart } = state;
-  
-function TotalItems() {
-  var totalItems = 0;
-  state.cart.forEach((item) => {
-    for (let i = 0; i < state.cart.length; i++) {
 
-      totalItems= item.purchaseQuantity + totalItems;
-    }
+
+  //Calculating the Cart Items
+
+
+
+  function TotalItems() {
+    let totalItems = 0;
+    state.cart.forEach((item) => {
+      {
+        totalItems += item.purchaseQuantity;
+      }
     });
     return totalItems;
   }
 
 
-
-
+  //Showing 
   function showNavigation() {
     if (Auth.loggedIn()) {
       return (
-        <>
-          <Nav.Link className="mx-1" href="/orderHistory">
+        <Nav className="me-auto">
+          <Nav.Link className="m-1" href="/orderHistory">
             Order History
           </Nav.Link>
-          <NavItem className="mx-1" onClick={() => Auth.logout()}>
+          <Nav.Link className="m-1" onClick={() => Auth.logout()}>
             Logout
-          </NavItem>
-        </>
+          </Nav.Link>
+        </Nav>
       );
     } else {
       return (
@@ -61,16 +63,23 @@ function TotalItems() {
   }
 
   return (
-    <Navbar collapseOnSelect expand="lg" bg="light" variant="light">
-      <Container>
-        <Navbar.Brand href="/">Pretty Stones</Navbar.Brand>
+    <Navbar className="p-3" collapseOnSelect expand="lg" bg="light" variant="light">
+      
+      
+            <img
+              src='./images/logo.jpg'
+              height='90'
+              alt=''
+              loading='lazy'
+            />
+     
+        <Navbar.Brand  className="brand fs-1" href="/">Pretty Stones</Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link href="/earings">Earings</Nav.Link>
-            <Nav.Link href="/necklace">Necklace</Nav.Link>
-            <Nav.Link href="/rings">Rings</Nav.Link>
-            <Nav.Link href="/about">About us</Nav.Link>
+
+            {<CategoryMenu/>}
+         
           </Nav>
           <Nav>
             <nav>{showNavigation()}</nav>
@@ -80,20 +89,19 @@ function TotalItems() {
             <Nav.Link className="m-1"> </Nav.Link>
             <Nav>
               {" "}
-              <Dropdown alignRight>
-                <Dropdown.Toggle variant="success">
+              <Dropdown align="end">
+                <Dropdown.Toggle variant="secondary">
                   <ShoppingCartSimple size={32} />
                   <Badge>{TotalItems()}</Badge>
                 </Dropdown.Toggle>
-
-                <Dropdown.Menu style={{ minWidth: 390 }}>
+                <Dropdown.Menu className="super-colors">
                   <Cart />
-                </Dropdown.Menu>
+                 </Dropdown.Menu>
               </Dropdown>
             </Nav>
           </Nav>
         </Navbar.Collapse>
-      </Container>
+      
     </Navbar>
   );
 };

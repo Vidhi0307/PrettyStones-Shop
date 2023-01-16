@@ -1,12 +1,11 @@
 const mongoose = require('mongoose');
 require('dotenv').config();
 
-
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/prettystones', {
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/prettyStones', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 /*   useCreateIndex: true,
-  useFindAndModify: true, */
+  useFindAndModify: false */
 });
 
 module.exports = mongoose.connection;

@@ -20,6 +20,7 @@ import Login from "./pages/Login"
 import Footer from "./components/Footer";
 import Cart from "./components/Cart";
 import { LOGIN } from "./utils/mutations";
+import CheckoutPage from "./pages/CheckoutPage";
 
 
 
@@ -53,7 +54,9 @@ function App() {
           <Routes>
            <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/cart" element={<Cart />} />
             <Route path="/signup" element={<Signup />} />
+            <Route path="/checkout" element={<CheckoutPage />} />
             
           </Routes>
           <Footer />

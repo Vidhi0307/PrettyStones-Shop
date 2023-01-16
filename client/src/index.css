@@ -1,5 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Allura&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Sacramento&family=Moon+Dance&display=swap');
 
 * {
   margin :0;
@@ -7,13 +6,20 @@
   
 }
 
+.brand 
+{
+  font-family: 'Sacramento';
+
+}
 .App{
-  background-color:honeydew  ;
+  background-color:rgb(240, 248, 247)  ;
 
 }
 .home{
   display: flex;
 }
+
+
 .header{
   display: flex;
   flex-direction: row;
@@ -23,10 +29,9 @@
 
 
 .products {
+display: flex;
+flex-direction: row;
 
-  display: flex;
-  flex-wrap:wrap;
- justify-content: space-between;
 }
 
 .product {
@@ -34,10 +39,8 @@
   padding:2px;
   margin:3px;
   margin:2rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
+   
+
 }
 
 .container {

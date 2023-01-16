@@ -1,12 +1,32 @@
-import React, { useState } from 'react';
-import { useMutation } from '@apollo/client';
-import { Link } from 'react-router-dom';
-import { LOGIN } from '../utils/mutations';
-import Auth from '../utils/auth';
+import React, { useState } from "react";
+import { useMutation } from "@apollo/client";
+import { Link } from "react-router-dom";
+import { LOGIN } from "../utils/mutations";
+import Auth from "../utils/auth";
+import {
+  Grid,
+  Paper,
+  Avatar,
+  TextField,
+  FormControlLabel,
+  Typography,
+  Checkbox,
+} from "@mui/material";
+import LockPersonIcon from "@mui/icons-material/LockPerson";
+import { Form, Row, Col, Button } from "react-bootstrap";
 
 function Login(props) {
-  const [formState, setFormState] = useState({ email: '', password: '' });
+  const [formState, setFormState] = useState({ email: "", password: "" });
   const [login, { error }] = useMutation(LOGIN);
+
+  const paperStyle = {
+    padding: 20,
+    height: "70vh",
+    width: 380,
+    margin: "20px auto",
+  };
+  const avatarStyle = { backgroundColor: "#1bbd7e" };
+  const btnstyle = { margin: "8px" };
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
@@ -30,41 +50,64 @@ function Login(props) {
   };
 
   return (
-    <div className="container my-1">
-      <Link to="/signup">← Go to Signup</Link>
-
-      <h2>Login</h2>
-      <form onSubmit={handleFormSubmit}>
-        <div className="flex-row space-between my-2">
-          <label htmlFor="email">Email address:</label>
-          <input
-            placeholder="youremail@test.com"
+    <Grid>
+      <Paper elevation={10} style={paperStyle}>
+        <Grid align="center" className="py-4">
+          <Avatar style={avatarStyle}>
+            <LockPersonIcon />
+          </Avatar>
+          Sign in
+        </Grid>
+        <form onSubmit={handleFormSubmit}>
+          <TextField
+            id="email"
             name="email"
             type="email"
-            id="email"
+            className="mr-3 py-2"
+            label="Username"
+            variant="filled"
             onChange={handleChange}
+            placeholder="Email Address"
+            fullWidth
+            required
           />
-        </div>
-        <div className="flex-row space-between my-2">
-          <label htmlFor="pwd">Password:</label>
-          <input
-            placeholder="******"
+          <TextField
+            id="password"
             name="password"
             type="password"
-            id="pwd"
+            className="mr-3"
+            label="Password"
             onChange={handleChange}
+            variant="filled"
+            placeholder="*******"
+            fullWidth
+            required
           />
-        </div>
-        {error ? (
-          <div>
-            <p className="error-text">The provided credentials are incorrect</p>
+          {error ? (
+            <div>
+              <p className="error-text">
+                The provided credentials are incorrect
+              </p>
+            </div>
+          ) : null}
+
+          <FormControlLabel
+            control={<Checkbox name="checkedB" color="primary" />}
+            label="Remember me"
+          />
+          <div className="m-4">
+            <Button  variant="success" className="" type="submit">Login</Button>
           </div>
-        ) : null}
-        <div className="flex-row flex-end">
-          <button type="submit">Submit</button>
-        </div>
-      </form>
-    </div>
+          <Typography>
+            <Link href="#">Forgot password ?</Link>
+          </Typography>
+          <Typography>
+            {" "}
+            Do you have an account ?<Link to="/signup" >Sign Up</Link>
+          </Typography>
+        </form>
+      </Paper>
+    </Grid>
   );
 }
 

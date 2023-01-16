@@ -6,18 +6,16 @@ import { QUERY_CHECKOUT } from '../utils/queries';
 import { idbPromise } from '../utils/helpers';
 import CartItem from './CartItem';
 import Auth from "../utils/auth";
+import {Button} from 'react-bootstrap';
 import './style.css';
-
-//import Auth from '../utils/auth';
-// import { useStoreContext } from '../../utils/GlobalState';
 import { ADD_MULTIPLE_TO_CART } from '../utils/actions';
-
 import { useDispatch, useSelector } from 'react-redux';
+import { Container } from 'react-bootstrap';
 
 const stripePromise = loadStripe('pk_test_TYooMQauvdEDq54NiTphI7jx');
 
 const Cart = () => {
-  // const [state, dispatch] = useStoreContext();
+
   const dispatch = useDispatch();
   const state = useSelector(state => state);
   
@@ -68,34 +66,36 @@ const Cart = () => {
 
  
   return (
-    <div className="cart">
-     
     
+    
+      <main className="cart">
       {state.cart.length ? (
         <div>
           {state.cart.map((item) => (
             <CartItem key={item._id} item={item} />
           ))}
 
-          <div className="flex-row space-between">
-            <strong>Total: ${calculateTotal()}</strong>
+          <div >
+          <p className ="fw-bold fs-4"> Total: ${calculateTotal()} </p>
 
             { Auth.loggedIn() ? (
-              <button onClick={submitCheckout}>Checkout</button>
+              <Button href='/checkout' className="rounded" variant='primary' onClick={submitCheckout}>Checkout</Button>
             ) : (
-              <span>(log in to check out)</span>
+              <span >(Please login to checkout.)
+                <a href='/login'>login</a>
+              </span>
             )} 
           </div>
         </div>
+
       ) : (
-        <h3>
-          <span role="img" aria-label="shocked">
-            😱
-          </span>
-          You haven't added anything to your cart yet!
-        </h3>
+        <h5>
+                 Your Cart is Empty
+        </h5>
       )}
-    </div>
+      </main>
+     
+   
   );
 };
 
