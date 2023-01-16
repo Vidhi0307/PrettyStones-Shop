@@ -1,18 +1,17 @@
 import { Heart, User, ShoppingCartSimple, Image } from "phosphor-react";
-import React from "react";
+import React,{useState} from "react";
 import Auth from "../utils/auth";
 import { Link, useLocation } from "react-router-dom";
-import { Dropdown } from "react-bootstrap";
+import { ModalBody } from "react-bootstrap";
 import CategoryMenu  from "./Categories";
-import {
-  Badge,
-  Button,
+import { Dropdown,Modal,Button ,Badge,
   Navbar,
   Nav,
   Container,
   NavDropdown,
   NavItem,
 } from "react-bootstrap";
+
 
 import { useDispatch, useSelector } from "react-redux";
 import Cart from "./Cart";
@@ -21,6 +20,10 @@ import DropdownItem from "react-bootstrap/esm/DropdownItem";
 const Header = () => {
   const dispatch = useDispatch();
   const state = useSelector((state) => state);
+
+  const [show,setShow]=useState(false);
+  const handleClose=()=> setShow(false);
+  const handleShow=()=> setShow(true);
 
   const { cart } = state;
 
@@ -63,6 +66,8 @@ const Header = () => {
   }
 
   return (
+
+    <>
     <Navbar className="p-3" collapseOnSelect expand="lg" bg="light" variant="light">
       
       
@@ -75,7 +80,7 @@ const Header = () => {
      
         <Navbar.Brand  className="brand fs-1" href="/">Pretty Stones</Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-        <Navbar.Collapse id="responsive-navbar-nav">
+        <Navbar.Collapse id="responsive-navbar-nav" className="justify-content-end">
           <Nav className="me-auto">
 
             {<CategoryMenu/>}
@@ -88,21 +93,21 @@ const Header = () => {
             </Nav.Link>
             <Nav.Link className="m-1"> </Nav.Link>
             <Nav>
-              {" "}
-              <Dropdown align="end">
-                <Dropdown.Toggle variant="secondary">
-                  <ShoppingCartSimple size={32} />
-                  <Badge>{TotalItems()}</Badge>
-                </Dropdown.Toggle>
-                <Dropdown.Menu className="super-colors">
-                  <Cart />
-                 </Dropdown.Menu>
-              </Dropdown>
+           <Button variant="info" onClick={handleShow}> <ShoppingCartSimple size={32} /> <Badge>{TotalItems()}</Badge></Button>
+              
             </Nav>
           </Nav>
         </Navbar.Collapse>
       
     </Navbar>
+    <Modal show={show} onHide={handleClose}>
+    <Modal.Header closeButton><Modal.Title>Your Cart</Modal.Title></Modal.Header>
+    <ModalBody>
+    <Cart/>
+    </ModalBody>
+
+    </Modal>
+    </>
   );
 };
 

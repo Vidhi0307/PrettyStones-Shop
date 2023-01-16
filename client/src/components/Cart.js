@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import { ShoppingCartSimple } from "phosphor-react";
 import { loadStripe } from '@stripe/stripe-js';
 import { useLazyQuery } from '@apollo/client';
 import { QUERY_CHECKOUT } from '../utils/queries';
@@ -10,9 +9,9 @@ import {Button} from 'react-bootstrap';
 import './style.css';
 import { ADD_MULTIPLE_TO_CART } from '../utils/actions';
 import { useDispatch, useSelector } from 'react-redux';
-import { Container } from 'react-bootstrap';
 
-const stripePromise = loadStripe('pk_test_TYooMQauvdEDq54NiTphI7jx');
+
+const stripePromise = loadStripe('pk_test_51MQmWOBmobSu8txGt0hHJBShZHWJVOkrMl4pnXZesQHtWlByOeTR42RZJpaTLNePjEHgKSLrRTLhhAK2lqkUKfhw00FZnIuaVD');
 
 const Cart = () => {
 
@@ -24,8 +23,12 @@ const Cart = () => {
   useEffect(() => {
     if (data) {
       stripePromise.then((res) => {
+        
         res.redirectToCheckout({ sessionId: data.checkout.session });
       });
+    }
+    else{
+      console.log("Enterd HERE")
     }
   }, [data]);
 
@@ -51,12 +54,16 @@ const Cart = () => {
   }
 
   function submitCheckout() {
-    const productIds = [];
 
+    
+    const productIds = [];
+    
     state.cart.forEach((item) => {
       for (let i = 0; i < item.purchaseQuantity; i++) {
         productIds.push(item._id);
       }
+
+      console.log(productIds);
     });
 
     getCheckout({
@@ -68,34 +75,33 @@ const Cart = () => {
   return (
     
     
-      <main className="cart">
+      <div className="cart">
+       <h2>Shopping Cart</h2>
       {state.cart.length ? (
         <div>
           {state.cart.map((item) => (
             <CartItem key={item._id} item={item} />
           ))}
 
-          <div >
-          <p className ="fw-bold fs-4"> Total: ${calculateTotal()} </p>
+          <div className="flex-row space-between">
+            <strong>Total: ${calculateTotal()}</strong>
 
-            { Auth.loggedIn() ? (
-              <Button href='/checkout' className="rounded" variant='primary' onClick={submitCheckout}>Checkout</Button>
+            {Auth.loggedIn() ? (
+              <button onClick={submitCheckout}>Checkout</button>
             ) : (
-              <span >(Please login to checkout.)
-                <a href='/login'>login</a>
-              </span>
-            )} 
+              <span>(log in to check out)</span>
+            )}
           </div>
         </div>
-
       ) : (
-        <h5>
-                 Your Cart is Empty
-        </h5>
+        <h3>
+          <span role="img" aria-label="shocked">
+            😱
+          </span>
+          You haven't added anything to your cart yet!
+        </h3>
       )}
-      </main>
-     
-   
+    </div>
   );
 };
 

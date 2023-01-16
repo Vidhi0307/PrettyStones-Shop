@@ -48,7 +48,7 @@ function ProductItem(item) {
       <Grid item xs={12} sm={6} md={4} lg={3}>
         <Card
           className=" border border-secondary rounded-2"
-          style={{ width: "18rem" }}
+          style={{ width: "18rem" }} 
         >
           <Card.Img variant="top" src={`/images/${image}`} />
           <Card.Body>
@@ -56,11 +56,11 @@ function ProductItem(item) {
               <p className="fas fw-bold"> {name}</p>
             </Card.Title>
             <Card.Text>
-              <span>Price :: ${price}</span>
+              <span>Price: ${price}</span>
               <Button
-                variant="success"
+                variant="info"
                 size="sm"
-                className="ms-5"
+                className="m-3"
                 onClick={addToCart}
               >
                 Add to Cart

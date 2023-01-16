@@ -13,18 +13,13 @@ import {
   Checkbox,
 } from "@mui/material";
 import LockPersonIcon from "@mui/icons-material/LockPerson";
-import { Form, Row, Col, Button } from "react-bootstrap";
+import { Form, Row, Col, Button, Container } from "react-bootstrap";
 
 function Login(props) {
   const [formState, setFormState] = useState({ email: "", password: "" });
   const [login, { error }] = useMutation(LOGIN);
 
-  const paperStyle = {
-    padding: 20,
-    height: "70vh",
-    width: 380,
-    margin: "20px auto",
-  };
+ 
   const avatarStyle = { backgroundColor: "#1bbd7e" };
   const btnstyle = { margin: "8px" };
 
@@ -50,8 +45,8 @@ function Login(props) {
   };
 
   return (
-    <Grid>
-      <Paper elevation={10} style={paperStyle}>
+    <Container>
+      
         <Grid align="center" className="py-4">
           <Avatar style={avatarStyle}>
             <LockPersonIcon />
@@ -63,22 +58,22 @@ function Login(props) {
             id="email"
             name="email"
             type="email"
-            className="mr-3 py-2"
             label="Username"
-            variant="filled"
+            variant="outlined"
             onChange={handleChange}
             placeholder="Email Address"
             fullWidth
             required
           />
+          <br/><br/><br/>
           <TextField
             id="password"
             name="password"
             type="password"
-            className="mr-3"
+            
             label="Password"
             onChange={handleChange}
-            variant="filled"
+            variant="outlined"
             placeholder="*******"
             fullWidth
             required
@@ -95,19 +90,24 @@ function Login(props) {
             control={<Checkbox name="checkedB" color="primary" />}
             label="Remember me"
           />
-          <div className="m-4">
+          <div  align="center">
+          <span className="m-4">
             <Button  variant="success" className="" type="submit">Login</Button>
+          </span>
+
+            Don't have an account ?  <span className="m-4">
+            <Button  variant="success" className="" type="submit" href="/signup">Sign up</Button>
+          </span>
+          
           </div>
-          <Typography>
+
+          <Typography className="p-5">
             <Link href="#">Forgot password ?</Link>
           </Typography>
-          <Typography>
-            {" "}
-            Do you have an account ?<Link to="/signup" >Sign Up</Link>
-          </Typography>
+          
         </form>
-      </Paper>
-    </Grid>
+      
+    </Container >
   );
 }
 
