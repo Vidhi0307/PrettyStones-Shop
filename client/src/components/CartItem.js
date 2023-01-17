@@ -3,6 +3,7 @@ import React from 'react';
 import { REMOVE_FROM_CART, UPDATE_CART_QUANTITY } from "../utils/actions";
 import { idbPromise } from "../utils/helpers";
 import { useDispatch } from 'react-redux';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 const CartItem = ({ item }) => {
 
@@ -40,18 +41,18 @@ const CartItem = ({ item }) => {
   }
 
   return (
-    <div className="flex-row">
+    <div className="flex-row p-4 m-4 border-dark">
       <div>
-        <img
+        <img 
           src={`/images/${item.image}`}
           alt=""
         />
       </div>
       <div>
-        <div>{item.name}, ${item.price}</div>
+        <div>{item.name}, <br/>Price:  ${item.price}</div>
         <div>
           <span>Qty:</span>
-          <input
+          <input className='p-1 m-1'
             type="number"
             placeholder="1"
             value={item.purchaseQuantity}
@@ -62,7 +63,7 @@ const CartItem = ({ item }) => {
             aria-label="trash"
             onClick={() => removeFromCart(item)}
           >
-            🗑️
+            <DeleteIcon/>
           </span>
         </div>
       </div>

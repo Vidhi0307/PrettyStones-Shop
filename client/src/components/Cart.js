@@ -71,13 +71,14 @@ const Cart = () => {
             <CartItem key={item._id} item={item} />
           ))}
 
-          <div className="flex-row space-between">
+          <div className="flex-row space-between fs-3 p-4">
             <strong>Total: ${calculateTotal()}</strong>
+            <br/>
 
             {Auth.loggedIn() ? (
-              <button onClick={submitCheckout}>Checkout</button>
+              <Button variant='info' className="rounded-1" onClick={submitCheckout}>Checkout</Button>
             ) : (
-              <span>(log in to check out)</span>
+              <span>(Please log in to check out)<a href='/login'>Login</a></span>
             )}
           </div>
         </div>

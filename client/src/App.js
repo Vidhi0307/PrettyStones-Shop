@@ -14,15 +14,15 @@ import store from "./utils/store";
 //pages and Components
 import Home from "./pages/HomePage";
 import Signup from "./pages/Signup";
+import Detail from "./pages/Detail";
 import Header from "./components/Header";
 import Login from "./pages/Login";
 import Footer from "./components/Footer";
 import Cart from "./components/Cart";
-import CheckoutPage from "./pages/CheckoutPage";
-import Cancel from "./pages/Cancel";
 import Success from "./pages/Success";
+import UserOrder from "./pages/UserOrder";
 
-import { LOGIN } from "./utils/mutations";
+
 
 const httpLink = createHttpLink({
   uri: "/graphql",
@@ -52,15 +52,15 @@ function App() {
           <Header /> 
            <Routes>
               
-              <Route path="/" element={<Home />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/cart" element={<Cart />} />
-              <Route path="/signup" element={<Signup />} />
-              <Route path="/checkout" element={<CheckoutPage />} /> 
-              <Route path="/cancel" element={<Cancel />} />
-              <Route path="/success" element={<Success />} />
+              <Route exact path="/" element={<Home />} />
+              <Route exact path="/login" element={<Login />} />
+              <Route exact path="/cart" element={<Cart />} />
+              <Route exact path="/signup" element={<Signup />} />
+              <Route exact path="/order" element={<UserOrder />} />
+              <Route exact  path="/products/:id" element={<Detail/>} />             
+              <Route exact path="/success" element={<Success />} />
             </Routes>
-            <Footer />
+            <Footer  />
           </Provider>
         </BrowserRouter>
       </div>

@@ -56,7 +56,7 @@ function CategoryMenu() {
          <Nav className="me-auto">
             
         { categories.map((item) => (
-        <Nav.Link
+        <Nav.Link className='navbar m-1 fs-5'
           key={item._id}
           onClick={() => {
             handleClick(item._id);
