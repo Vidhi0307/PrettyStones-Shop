@@ -7,12 +7,10 @@ import { useSelector } from "react-redux";
 import Cart from "./Cart";
 
 const Header = () => {
- 
   const state = useSelector((state) => state);
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-
 
   //Calculating the Cart Items
 
@@ -53,7 +51,7 @@ const Header = () => {
 
   return (
     <>
-      <Navbar collapseOnSelect expand="md" bg="light" variant="light">
+      <Navbar collapseOnSelect expand="lg" bg="light" variant="light">
         <img src="./images/logo.jpg" height="100" alt="" loading="lazy" />
 
         <Navbar.Brand className="brand" href="/">

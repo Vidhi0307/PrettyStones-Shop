@@ -11,8 +11,7 @@ import {
 } from "../utils/actions";
 import { QUERY_PRODUCTS } from "../utils/queries";
 import { idbPromise } from "../utils/helpers";
-import { Container,Button } from "react-bootstrap";
-
+import { Container, Button } from "react-bootstrap";
 
 function Detail() {
   // const [state, dispatch] = useStoreContext();
@@ -27,7 +26,6 @@ function Detail() {
   const { products, cart } = state;
 
   useEffect(() => {
-
     if (products.length) {
       setCurrentProduct(products.find((product) => product._id === id));
     }
@@ -87,7 +85,7 @@ function Detail() {
     <>
       {currentProduct && cart ? (
         <Container>
-          <Link to="/">  ← Go to Homepage  </Link>
+          <Link to="/"> ← Go to Homepage </Link>
 
           <h2 className="fs-1 p-3">{currentProduct.name}</h2>
 
@@ -95,24 +93,32 @@ function Detail() {
 
           <p className="fs-3 p-3">
             <strong>Price:</strong>${currentProduct.price}{" "}
-            <Button  className="p-1 m-1 rounded-1" variant="info" onClick={addToCart}>Add to Cart</Button  >
-            <Button className="p-1 m-1 rounded-1" variant="info"
-              disabled={!cart.find((p) => p._id === currentProduct._id)} 
+            <Button
+              className="p-1 m-1 rounded-1"
+              variant="info"
+              onClick={addToCart}
+            >
+              Add to Cart
+            </Button>
+            <Button
+              className="p-1 m-1 rounded-1"
+              variant="info"
+              disabled={!cart.find((p) => p._id === currentProduct._id)}
               onClick={removeFromCart}
             >
               Remove from Cart
             </Button>
           </p>
-<div>
-          <img  style={{ width: '50rem' }}
-            src={`/images/${currentProduct.image}` }
-            alt={currentProduct.name}
-          />
+          <div>
+            <img
+              style={{ width: "50rem" }}
+              src={`/images/${currentProduct.image}`}
+              alt={currentProduct.name}
+            />
           </div>
         </Container>
       ) : null}
-      {loading ? <img src='logo' alt="loading" /> : null}
-      
+      {loading ? <img src="logo" alt="loading" /> : null}
     </>
   );
 }

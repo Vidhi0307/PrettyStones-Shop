@@ -10,7 +10,8 @@ import "./style.css";
 import { ADD_MULTIPLE_TO_CART } from "../utils/actions";
 import { useDispatch, useSelector } from "react-redux";
 
-const stripePromise = loadStripe("pk_test_51MRAThLJIDrXYoQ1rYbQdUTOA5irGj9TKepJ5uWSEXZS4l0KET6QN9X2ENotizXNJsUyiqaBe5gD4Cna6hcFFLC800SnZVcsc6"
+const stripePromise = loadStripe(
+  "pk_test_51MRAThLJIDrXYoQ1rYbQdUTOA5irGj9TKepJ5uWSEXZS4l0KET6QN9X2ENotizXNJsUyiqaBe5gD4Cna6hcFFLC800SnZVcsc6"
 );
 
 const Cart = () => {
@@ -55,7 +56,6 @@ const Cart = () => {
       for (let i = 0; i < item.purchaseQuantity; i++) {
         productIds.push(item._id);
       }
-
     });
 
     getCheckout({
@@ -73,12 +73,20 @@ const Cart = () => {
 
           <div className="flex-row space-between fs-3 p-4">
             <strong>Total: ${calculateTotal()}</strong>
-            <br/>
+            <br />
 
             {Auth.loggedIn() ? (
-              <Button variant='info' className="rounded-1" onClick={submitCheckout}>Checkout</Button>
+              <Button
+                variant="info"
+                className="rounded-1"
+                onClick={submitCheckout}
+              >
+                Checkout
+              </Button>
             ) : (
-              <span>(Please log in to check out)<a href='/login'>Login</a></span>
+              <span>
+                (Please log in to check out)<a href="/login">Login</a>
+              </span>
             )}
           </div>
         </div>

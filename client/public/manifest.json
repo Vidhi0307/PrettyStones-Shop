@@ -1,7 +1,20 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "name": "Pretty Stones -Jewlery Store",
+  "short_name": "Pretty Stones",
+  "theme_color": "#fff",
+  "background_color": "#fff",
+  "display": "standalone",
+  "orientation": "portrait",
+  "scope": "/",
+  "start_url": "/",
   "icons": [
+    {
+      "src": "path/to/maskable_icon.png",
+      "sizes": "196x196",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+
     {
       "src": "favicon.ico",
       "sizes": "64x64 32x32 24x24 16x16",
@@ -17,9 +30,19 @@
       "type": "image/png",
       "sizes": "512x512"
     }
-  ],
-  "start_url": ".",
-  "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+    ,
+    {
+      "src": "logo386.png",
+      "type": "image/png",
+      "sizes": "386x386"
+    }
+    ,
+    {
+      "src": "logo256.png",
+      "type": "image/png",
+      "sizes": "256x256"
+    }
+    
+  ]
+
 }

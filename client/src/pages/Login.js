@@ -19,7 +19,6 @@ function Login(props) {
   const [formState, setFormState] = useState({ email: "", password: "" });
   const [login, { error }] = useMutation(LOGIN);
 
- 
   const avatarStyle = { backgroundColor: "#1bbd7e" };
   const btnstyle = { margin: "8px" };
 
@@ -31,7 +30,6 @@ function Login(props) {
       });
       const token = mutationResponse.data.login.token;
       Auth.login(token);
-      
     } catch (e) {
       console.log(e);
     }
@@ -47,68 +45,67 @@ function Login(props) {
 
   return (
     <Container>
-      
-        <Grid align="center" className="py-4">
-          <Avatar style={avatarStyle}>
-            <LockPersonIcon />
-          </Avatar>
-          Sign in
-        </Grid>
-        <form onSubmit={handleFormSubmit}>
-          <TextField
-            id="email"
-            name="email"
-            type="email"
-            label="Username"
-            variant="outlined"
-            onChange={handleChange}
-            placeholder="Email Address"
-            fullWidth
-            required
-          />
-          <br/><br/><br/>
-          <TextField
-            id="password"
-            name="password"
-            type="password"
-            
-            label="Password"
-            onChange={handleChange}
-            variant="outlined"
-            placeholder="*******"
-            fullWidth
-            required
-          />
-          {error ? (
-            <div>
-              <p className="error-text">
-                The provided credentials are incorrect
-              </p>
-            </div>
-          ) : null}
-
-          <FormControlLabel
-            control={<Checkbox name="checkedB" color="primary" />}
-            label="Remember me"
-          />
-          <div  align="center">
-          <span className="m-4">
-            <Button  variant="success" className="" type="submit">Login</Button>
-          </span>
-
-            Don't have an account ?  <span className="m-4">
-            <Button  variant="success" className="" type="submit" href="/signup">Sign up</Button>
-          </span>
-          
+      <Grid align="center" className="py-4">
+        <Avatar style={avatarStyle}>
+          <LockPersonIcon />
+        </Avatar>
+        Sign in
+      </Grid>
+      <form onSubmit={handleFormSubmit}>
+        <TextField
+          id="email"
+          name="email"
+          type="email"
+          label="Username"
+          variant="outlined"
+          onChange={handleChange}
+          placeholder="Email Address"
+          fullWidth
+          required
+        />
+        <br />
+        <br />
+        <br />
+        <TextField
+          id="password"
+          name="password"
+          type="password"
+          label="Password"
+          onChange={handleChange}
+          variant="outlined"
+          placeholder="*******"
+          fullWidth
+          required
+        />
+        {error ? (
+          <div>
+            <p className="error-text">The provided credentials are incorrect</p>
           </div>
+        ) : null}
 
-          <Typography className="p-5">
-            <Link href="#">Forgot password ?</Link>
-          </Typography>
-          
-        </form>
-      
-    </Container >
+        <FormControlLabel
+          control={<Checkbox name="checkedB" color="primary" />}
+          label="Remember me"
+        />
+        <div align="center">
+          <span className="m-4">
+            <Button variant="success" className="" type="submit">
+              Login
+            </Button>
+          </span>
+          Don't have an account ?{" "}
+          <span className="m-4">
+            <Button variant="success" className="" type="submit" href="/signup">
+              Sign up
+            </Button>
+          </span>
+        </div>
+
+        <Typography className="p-5">
+          <Link href="#">Forgot password ?</Link>
+        </Typography>
+      </form>
+    </Container>
   );
 }
 
