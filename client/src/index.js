@@ -3,7 +3,7 @@ import ReactDOM from "react-dom/client";
 import "./bootstrap.min.css";
 import "./index.css";
 import App from "./App";
-import * as serviceWorker from "./serviceWorker";
+import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -11,5 +11,5 @@ root.render(
     <App />
   </React.StrictMode>
 );
+serviceWorkerRegistration.register();
 
-serviceWorker.register();

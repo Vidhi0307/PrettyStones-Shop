@@ -51,7 +51,7 @@ function ProductList() {
   return (
     <Container  className="p-1 flex">
       {state.products.length ? (
-        <Row xs={1}  md={2} className="g-1 ">
+        <Row xs={1}  md={2}  lg={4} className="g-1 ">
           {filterProducts().map((product) => (
             <Col align="center" key={product._id}>
               {" "}
