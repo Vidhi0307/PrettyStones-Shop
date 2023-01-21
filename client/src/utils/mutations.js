@@ -11,6 +11,7 @@ export const LOGIN = gql`
   }
 `;
 
+//gql request from client to server for adding the order adding 
 export const ADD_ORDER = gql`
   mutation addOrder($products: [ID]!) {
     addOrder(products: $products) {
@@ -28,7 +29,7 @@ export const ADD_ORDER = gql`
     }
   }
 `;
-
+//query for sending registering user request from client side to server side.
 export const ADD_USER = gql`
   mutation addUser(
     $firstName: String!

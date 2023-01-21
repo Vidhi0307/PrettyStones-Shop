@@ -14,16 +14,17 @@ const UserOrder = () => {
 
   return (
     <>
+
       <Container>
         {user ? (
           <>
             <div className="m-3 fs-3 p-1 "></div>
             {user.orders.map((order) => (
               <div key={order._id} className="my-2">
-                <span className="fs-2">
+                <span className="fs-2 fas">
                   Ordered on ::
                   {new Date(parseInt(order.purchaseDate)).toLocaleDateString()}
-                </span>
+                </span><br/>
                 <div className="flex-row">
                   {order.products.map(({ _id, image, name, price }, index) => (
                     <div key={index} className="card px-1 py-1">

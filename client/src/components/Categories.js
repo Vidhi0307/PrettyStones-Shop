@@ -4,7 +4,6 @@ import { Button, Navbar, Nav, Container, NavItem } from "react-bootstrap";
 import { UPDATE_CATEGORIES, UPDATE_CURRENT_CATEGORY } from "../utils/actions";
 import { QUERY_CATEGORIES } from "../utils/queries";
 import { idbPromise } from "../utils/helpers";
-
 import { useDispatch, useSelector } from "react-redux";
 
 function CategoryMenu() {
@@ -12,7 +11,7 @@ function CategoryMenu() {
   const state = useSelector((state) => state);
 
   const { categories } = state;
-
+  //fetching Categories from back end
   const { loading, data: categoryData } = useQuery(QUERY_CATEGORIES);
 
   useEffect(() => {
@@ -25,6 +24,7 @@ function CategoryMenu() {
         idbPromise("categories", "put", category);
       });
     } else if (!loading) {
+      //if not loaded from backend fetch from index db
       idbPromise("categories", "get").then((categories) => {
         dispatch({
           type: UPDATE_CATEGORIES,
@@ -34,6 +34,7 @@ function CategoryMenu() {
     }
   }, [categoryData, loading, dispatch]);
 
+  //function handling filtering items based on categories chosen.
   const handleClick = (id) => {
     dispatch({
       type: UPDATE_CURRENT_CATEGORY,

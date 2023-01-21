@@ -1,13 +1,18 @@
 import React from "react";
-
 import { REMOVE_FROM_CART, UPDATE_CART_QUANTITY } from "../utils/actions";
 import { idbPromise } from "../utils/helpers";
 import { useDispatch } from "react-redux";
 import DeleteIcon from "@mui/icons-material/Delete";
 
+
+
+
+
 const CartItem = ({ item }) => {
   const dispatch = useDispatch();
 
+
+  //function for removing item from a cart
   const removeFromCart = (item) => {
     dispatch({
       type: REMOVE_FROM_CART,
@@ -16,6 +21,8 @@ const CartItem = ({ item }) => {
     idbPromise("cart", "delete", { ...item });
   };
 
+
+  //function for handling purchase quantity of the items
   const onChange = (e) => {
     const value = e.target.value;
     if (value === "0") {
@@ -33,6 +40,8 @@ const CartItem = ({ item }) => {
       idbPromise("cart", "put", { ...item, purchaseQuantity: parseInt(value) });
     }
   };
+
+  //returning styled cart item
 
   return (
     <div className="flex-row p-4 m-4 border-dark">

@@ -10,6 +10,7 @@ import "./style.css";
 import { ADD_MULTIPLE_TO_CART } from "../utils/actions";
 import { useDispatch, useSelector } from "react-redux";
 
+//creating a stripe Promise instant.
 const stripePromise = loadStripe(
   "pk_test_51MRAThLJIDrXYoQ1rYbQdUTOA5irGj9TKepJ5uWSEXZS4l0KET6QN9X2ENotizXNJsUyiqaBe5gD4Cna6hcFFLC800SnZVcsc6"
 );
@@ -19,6 +20,9 @@ const Cart = () => {
   const state = useSelector((state) => state);
 
   const [getCheckout, { data }] = useLazyQuery(QUERY_CHECKOUT);
+
+
+  //re-directing to the stripe session if a session id was returned by lazy query
 
   useEffect(() => {
     if (data) {
@@ -41,6 +45,8 @@ const Cart = () => {
     }
   }, [state.cart.length, dispatch]);
 
+
+  //function for calculating total amount to be paid for the order
   function calculateTotal() {
     let sum = 0;
     state.cart.forEach((item) => {
@@ -58,6 +64,7 @@ const Cart = () => {
       }
     });
 
+  
     getCheckout({
       variables: { products: productIds },
     });
